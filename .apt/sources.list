@@ -1,0 +1,46 @@
+#############################
+# Debian Official Repos
+#############################
+
+# Debian Testing
+deb http://mirrors.rit.edu/debian/ testing main non-free contrib
+# deb-src http://debian.cs.binghamton.edu/debian/ testing main
+
+# Debian Stable
+deb http://mirrors.rit.edu/debian/ stable main non-free contrib
+# deb-src http://debian.cs.binghamton.edu/debian/ testing main
+
+# Debian Unstable
+deb http://mirrors.rit.edu/debian/ unstable main non-free contrib
+# deb-src http://debian.cs.binghamton.edu/debian/ testing main
+
+# Debian Experimental
+deb http://mirrors.rit.edu/debian/ experimental main non-free contrib
+# deb-src http://debian.cs.binghamton.edu/debian/ testing main
+
+# Debian Backports
+# deb http://ftp.debian.org/debian/ wheezy-backports main
+
+# Debian Security
+deb http://security.debian.org/ testing/updates main
+# deb-src http://security.debian.org/ testing/updates main
+
+#############################
+# Third Party Repos
+#############################
+
+# Deb Multimedia
+deb http://www.deb-multimedia.org testing main non-free
+# deb-src http://www.deb-multimedia.org sid main
+
+# Liquorix kernel
+deb http://liquorix.net/debian sid main
+
+# Spotify 
+deb http://repository.spotify.com stable non-free
+
+# Google Chrome
+deb http://dl.google.com/linux/chrome/deb/ stable main
+
+# Virtualbox
+deb http://download.virtualbox.org/virtualbox/debian wheezy contrib
