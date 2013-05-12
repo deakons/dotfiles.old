@@ -19,7 +19,7 @@ deb http://mirrors.rit.edu/debian/ experimental main non-free contrib
 # deb-src http://debian.cs.binghamton.edu/debian/ testing main
 
 # Debian Backports
-# deb http://ftp.debian.org/debian/ wheezy-backports main
+deb http://ftp.debian.org/debian/ wheezy-backports main
 
 # Debian Security
 deb http://security.debian.org/ testing/updates main
@@ -44,3 +44,6 @@ deb http://dl.google.com/linux/chrome/deb/ stable main
 
 # Virtualbox
 deb http://download.virtualbox.org/virtualbox/debian wheezy contrib
+
+# Last.fm
+deb http://apt.last.fm/debian testing main
