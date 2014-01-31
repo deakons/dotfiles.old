@@ -1,6 +1,12 @@
 ### Bashrc
 ### Author : Shane Case <deakons@gmail.com>
 
+# ======================
+# **********************
+# Init environment
+# **********************
+# ======================
+
 # Check for an interactive session
 [ -z "$PS1" ] && return
 
@@ -13,21 +19,41 @@ if [ -f ~/.bash/.bash_colors ]; then
 	. ~/.bash/.bash_colors
 fi
 
-### Environment Setup
+# Debian -- if support 256 color terminal
+if [ -e /lib/terminfo/x/xterm-256color ]; then
+        export TERM='xterm-256color'
+else
+        export TERM='xterm-color'
+fi
 
-# Do not post duplicates to bash history
-HISTCONTROL=ignoredups:ignorespace
-shopt -s histappend
-
-HISTSIZE=1000
-HISTFILESIZE=2000
-
-#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+case $(uname -s) in
+	Linux)
+		eval `dircolors /home/shane/.bash/.trapd00r_colors`
+		;;
+esac
 
 
-export PATH=$PATH:/bin:/sbin:/usr/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin:~/.bin:.
+# =====================
+# *********************
+# Shell Variables
+# *********************
+# =====================
+
+case $(uname -s) in
+	Darwin)
+		export PATH=$PATH:/opt/local/bin
+		;;	
+	*)
+		export PATH=$PATH:/bin:/sbin:/usr/sbin:/usr/bin:/usr/local/bin
+		export PATH=$PATH:/usr/local/sbin:/home/shane/bin:.
+		;;
+esac
+
+export HISTSIZE=1000
+export HISTFILESIZE=2000
+export PATH=$PATH:/bin:/sbin:/usr/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin:/home/shane/bin:.
 export EDITOR=vim
-
+export HISTCONTROL=ignoredups
 export LESS_TERMCAP_mb=$'\e[1;31m'
 export LESS_TERMCAP_md=$'\e[1;31m'
 export LESS_TERMCAP_me=$'\e[0m'
@@ -37,9 +63,53 @@ export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;32m'
 export GREP_COLOR="1;32"
 
-### End Environment Setup
 
-### Prompt (PS1)
+# =====================
+# *********************
+# Config Options
+# *********************
+# =====================
+
+
+shopt -s histappend 	# Append to history rather than overwrite
+shopt -s cdspell	# Correct spelling in cd command
+
+
+# =====================
+# *********************
+# Bash functions
+# *********************
+# =====================
+
+
+# Debian -- show recent apt activity
+function apt-history(){
+      case "$1" in
+        install)
+              cat /var/log/dpkg.log | grep 'install '
+              ;;
+        upgrade|remove)
+              cat /var/log/dpkg.log | grep $1
+              ;;
+        rollback)
+              cat /var/log/dpkg.log | grep upgrade | \
+                  grep "$2" -A10000000 | \
+                  grep "$3" -B10000000 | \
+                  awk '{print $4"="$5}'
+              ;;
+        *)
+              cat /var/log/dpkg.log
+              ;;
+      esac
+}
+
+# Delete a line from known_hosts
+
+# ====================
+# ********************
+# Prompt (PS1)
+# ********************
+# ====================
 
 # Display current git branch in PS1 prompt
 if [ -f /usr/bin/git ] 
@@ -50,11 +120,11 @@ then
 	        if [ -f "$dir/.git/HEAD" ]; then
 	            head=$(< "$dir/.git/HEAD")
 	            if [[ $head == ref:\ refs/heads/* ]]; then
-	                git_branch="-(${head#*/*/})"
+	                git_branch="(${head#*/*/})"
 	            elif [[ $head != '' ]]; then
-	                git_branch='-(detached)'
+	                git_branch='(detached)'
 	            else
-	                git_branch='-(unknown)'
+	                git_branch='(unknown)'
 	            fi
 	            return
 	        fi
@@ -83,55 +153,48 @@ PROMPT_COMMAND="parse_return_value;parse_git_branch"
 # Trim working directory to only show up previous two directories
 export PROMPT_DIRTRIM=2
 
-PS1="${BBlack}┌─[${Cyan}\A${BBlack}]-[${Cyan}\h${BBlack}]-[${Cyan}\j${BBlack}]-${BBlack}[${Cyan}\$retval${BBlack}]-[${Cyan}\w${BBlack}]-[${Cyan}\$(/bin/ls -A1 | /usr/bin/wc -l | /bin/sed 's: ::g') files, \$(/bin/ls -lAh | /bin/grep -m 1 total | /bin/sed 's/total //')b${BBlack}]-${BGreen}\$git_branch${BBlack}--\n"
+# Old Prompt
+#PS1="${BBlack}┌─[${BYellow}\A${BBlack}]-[${BGreen}\h${BBlack}]-[${BCyan}\j${BBlack}]-${BBlack}[${BCyan}\$retval${BBlack}]-[${BCyan}\w${BBlack}]-[${BCyan}\$(/bin/ls -A1 | /usr/bin/wc -l | /bin/sed 's: ::g') files, \$(/bin/ls -lAh | /bin/grep -m 1 total | /bin/sed 's/total //')b${BBlack}]--${BGreen}\$git_branch${BBlack}\n"
 
-# If copied to /root, show # instead
-if [ "`id -u`" -eq 0 ]; then
-       PS1=$PS1${BBlack}└─"${Red}[#] > ${Color_Off}"
-     else
-       PS1=$PS1${BBlack}└─"${BGreen}[$] > ${Color_Off}"
-fi
+PS1="\n\[\033[0;34m\]\342\224\214($(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]\h'; else echo '\[\033[01;32m\]\h'; fi)\[\033[0;34m\])\$([[ \$? != 0 ]] && echo \"\342\224\200(\[\033[0;31m\]\342\234\227\[\033[0;34m\])\")\342\224\200(\[\033[1;33m\]\A\[\033[0;34m\])\[\033[0;34m\]\342\224\200(\[\033[1;35m\]\j\[\033[0;34m\])\[\033[0;34m\]\342\224\200(\[\033[1;32m\]\$(ls -1 | wc -l | sed 's: ::g'    ) files, \$(ls -sh | head -n1 | sed 's/total //')b\[\033[0;34m\])\n\342\224\224\342\224\200(\[\033[1;32m\]\w\[\033[0;34m\])\342\224\200> \[\033[0m\]"
 
-# Directory colors
-LS_COLORS='rs=00;32:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:su=37;41:sg=30;43:tw=01;42:ow=01;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.zip=01;31:*.gz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.cpio=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.avi=01;35:*.flv=01;35:*.pdf=00;32:*.ps=00;32:*.txt=00;32:*.patch=00;32:*.diff=00;32:*.log=00;32:*.tex=00;32:*.doc=00;32:*.mid=00;36:*.midi=00;36:*.mp3=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36'
-export LS_COLORS
 
-### End Prompt
+# ====================
+# ********************
+# Aliases
+# ********************
+# ====================
 
-### Aliases
 
-alias ls='ls -pFHX --color=auto --group-directories-first'
+case $(uname -s) in
+	Darwin)
+		alias ls="ls -hFG"
+		;;	
+	Linux)
+		alias ls='ls -pFH --color=auto --group-directories-first'
+		;;
+esac
+
 alias ll='ls -l'
-alias la='ls -Al'
+alias la='ls -A'
 alias l='ls -CFl'
 alias make="time make"
-alias ps='ps faux'
+alias ps='ps o user,pid,psr,%cpu,%mem,args axf --cols 120'
 alias psg='ps | grep'
-alias grep='grep -n --color=auto'
+alias grep='grep --color=auto'
 alias rsync='rsync -ravz --progress'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-if [ -f /usr/bin/colordiff ]
-then
-	alias diff='colordiff'
-fi
+alias upgrade='sudo apt-get update; sudo apt-get -V dist-upgrade'
 
 if [ -f /usr/bin/valgrind ] 
 then
 	alias valgrind='valgrind -v --leak-check=full'
 fi
 
-if [ -f /usr/bin/colorgcc ]
+if [ -f /usr/bin/dfc ]
 then
-	alias gcc='colorgcc'
+	alias df='dfc -W'
 fi
-
-if [ -f /usr/bin/colormake ]
-then
-	alias make='colormake'
-fi
-
-### End Aliases
 
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
