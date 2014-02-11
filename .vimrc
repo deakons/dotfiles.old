@@ -73,3 +73,9 @@ nnoremap <leader><space> :noh<cr>
 
 " Strip whitespace
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+
+" Return to position when reopening a file
+autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
