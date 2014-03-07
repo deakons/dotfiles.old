@@ -185,7 +185,7 @@ alias grep='grep --color=auto'
 alias rsync='rsync -ravz --progress'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias update='sudo apt-get update'
-alias upgrade='sudo apt-get -V dist-upgrade'
+alias upgrade='sudo apt-get -V upgrade'
 
 if [ -f /usr/bin/valgrind ] 
 then

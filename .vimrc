@@ -14,6 +14,11 @@ call vundle#rc()
 
 " let Vundle manage itself
 Bundle 'gmarik/vundle'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'ntpeters/vim-better-whitespace'
+Bundle 'itchyny/calendar.vim'
+Bundle 'bling/vim-airline'
+Bundle 'majutsushi/tagbar'
 
 
 " This isn't VI
@@ -31,8 +36,8 @@ set softtabstop=4
 set expandtab
 
 
-set showmode
-set showcmd
+"set showmode
+"set showcmd
 set hidden
 set wildmenu
 set wildmode=list:longest
@@ -41,18 +46,13 @@ set ttyfast
 set ruler
 set backspace=indent,eol,start
 set laststatus=2
+set relativenumber
+set undofile
 set ignorecase
 set smartcase
 set showmatch
 set hlsearch
 set textwidth=80
-
-if v:version > 703
-    set relativenumber
-    set undofile
-else
-    set number
-endif
 
 
 set list
@@ -64,15 +64,25 @@ set formatoptions=qt
 set t_Co=256
 color ir_black
 set background=dark
+"colorscheme solarized
+"color solarized
 syntax on
+set foldmethod=syntax
+
+let g:airline#extensions#tabline#enabled = 1
 
 
 " Remove highlighted searches
 nnoremap <leader><space> :noh<cr>
-
+"
+nmap <F8> :TagbarToggle<CR>
 
 " Strip whitespace
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+
+
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
 
 " Return to position when reopening a file
 autocmd BufReadPost *
