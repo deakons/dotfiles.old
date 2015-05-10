@@ -8,7 +8,7 @@ filetype plugin indent on
 set encoding=utf-8
 
 
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 
 
@@ -19,6 +19,7 @@ Bundle 'ntpeters/vim-better-whitespace'
 Bundle 'itchyny/calendar.vim'
 Bundle 'bling/vim-airline'
 Bundle 'majutsushi/tagbar'
+Bundle 'mhinz/vim-startify'
 
 
 " This isn't VI
@@ -70,6 +71,7 @@ syntax on
 set foldmethod=syntax
 
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_section_b = '%{strftime("%c")}'
 
 
 " Remove highlighted searches

@@ -28,7 +28,7 @@ fi
 
 case $(uname -s) in
 	Linux)
-		eval `dircolors /home/shane/.bash/.trapd00r_colors`
+		eval `dircolors ~/.bash/.trapd00r_colors`
 		;;
 esac
 
