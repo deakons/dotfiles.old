@@ -3,43 +3,43 @@
 #############################
 
 # Debian Stable
-deb http://mirrors.rit.edu/debian/ stable main non-free contrib
-#deb-src http://mirrors.rit.edu/debian/ stable main non-free contrib
+deb http://mirror.cc.columbia.edu/debian/ stable main non-free contrib
+#deb-src http://mirror.cc.columbia.edu/debian/ stable main non-free contrib
 
 # Debian Testing
-deb http://mirrors.rit.edu/debian/ testing main non-free contrib
-#deb-src http://mirrors.rit.edu/debian/ testing main non-free contrib
+#deb http://mirror.cc.columbia.edu/debian/ testing main non-free contrib
+#deb-src http://mirror.cc.columbia.edu/debian/ testing main non-free contrib
 
 # Debian Unstable
-#deb http://mirrors.rit.edu/debian/ unstable main non-free contrib 
-#deb-src http://mirrors.rit.edu/debian/ unstable main non-free contrib
+#deb http://mirror.cc.columbia.edu/debian/ unstable main non-free contrib
+#deb-src http://mirror.cc.columbia.edu/debian/ unstable main non-free contrib
 
 # Debian Experimental
-deb http://mirrors.rit.edu/debian/ experimental main non-free contrib
-#deb-src http://mirrors.rit.edu/debian/ experimental main non-free contrib
+#deb http://mirror.cc.columbia.edu/debian/ experimental main non-free contrib
+#deb-src http://mirror.cc.columbia.edu/debian/ experimental main non-free contrib
 
 # Debian Security
-deb http://security.debian.org/ testing/updates main
+deb http://security.debian.org/ stable/updates main
 #deb-src http://security.debian.org/ testing/updates main
 
 # Testing Updates
-deb http://mirrors.rit.edu/debian/ testing-updates main
-#deb-src http://mirrors.rit.edu/debian/ testing-updates main
+#deb http://mirror.cc.columbia.edu/debian/ testing-updates main non-free contrib
+#deb-src http://mirror.cc.columbia.edu/debian/ testing-update main non-free contrib
 
 # Testing Proposed Updates
-#deb http://mirrors.rit.edu/debian/ testing-proposed-updates main
-#deb-src http://mirrors.edu/debian/ testing-proposed-updates main
+#deb http://mirror.cc.columbia.edu/debian/ testing-proposed-updates main non-free contrib
+#deb-src http://mirror.cc.columbia.edu/debian/ testing-proposed-updates main non-free contrib
+
+# jessie-updates, previously known as 'volatile'
+deb http://mirror.cc.columbia.edu/debian/ jessie-updates main
+#deb-src http://mirror.cc.columbia.edu/debian/ jessie-updates main
 
 #############################
 # Third Party Repos
 #############################
 
-# Oracle Java
-#deb http://ppa.launchpad.net/webupd8team/java/ubuntu precise main
-#deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu precise main
-
 # Google Chrome
-deb http://dl.google.com/linux/chrome/deb/ stable main
+#deb http://dl.google.com/linux/chrome/deb/ stable main
 
 # Spotify 
 #deb http://repository.spotify.com stable non-free

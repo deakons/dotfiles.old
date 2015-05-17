@@ -148,3 +148,6 @@
 # }}}
 [rerere]
 	enabled = true
+[user]
+	name = Shane Case
+	email = deakons@gmail.com
