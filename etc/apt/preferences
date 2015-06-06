@@ -1,15 +1,15 @@
 Package: *
-Pin: release a=testing
-Pin-Priority: 700
+Pin: release o=Debian,a=testing
+Pin-Priority: 400
 
 Package: *
-Pin: release a=stable
-Pin-Priority: 650
+Pin: release o=Debian,a=unstable
+Pin-Priority: 300
 
 Package: *
-Pin: release a=unstable
-Pin-Priority: 600
+Pin: release o=Debian,a=experimental
+Pin-Priority: 200
 
 Package: *
-Pin: release a=experimental
-Pin-Priority: 550
+Pin: release o=Debian,a=jessie
+Pin-Priority: 900
