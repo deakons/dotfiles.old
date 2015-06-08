@@ -9,6 +9,7 @@ deb http://httpredir.debian.org/debian/ jessie main non-free contrib
 # Debian Testing
 deb http://httpredir.debian.org/debian/ testing main non-free contrib
 #deb-src http://mirror.cc.columbia.edu/debian/ testing main non-free contrib
+
 # Debian Unstable
 deb http://httpredir.debian.org/debian/ unstable main non-free contrib
 #deb-src http://mirror.cc.columbia.edu/debian/ unstable main non-free contrib
@@ -32,6 +33,10 @@ deb http://security.debian.org/ jessie/updates main
 # jessie-updates, previously known as 'volatile'
 deb http://httpredir.debian.org/debian/ jessie-updates main
 #deb-src http://mirror.cc.columbia.edu/debian/ jessie-updates main
+
+# Debian Mozilla Team
+deb http://mozilla.debian.net/ jessie-backports iceweasel-release
+#deb-src http://mozilla.debian.net/ jessie-backports iceweasel-release
 
 #############################
 # Third Party Repos
