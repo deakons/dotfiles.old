@@ -19,7 +19,7 @@ deb http://httpredir.debian.org/debian/ experimental main non-free contrib
 #deb-src http://mirror.cc.columbia.edu/debian/ experimental main non-free contrib
 
 # Debian Security
-deb http://security.debian.org/ jessie/updates main
+deb http://security.debian.org/ jessie/updates main non-free contrib
 #deb-src http://security.debian.org/ testing/updates main
 
 # Testing Updates
@@ -31,7 +31,7 @@ deb http://security.debian.org/ jessie/updates main
 #deb-src http://mirror.cc.columbia.edu/debian/ testing-proposed-updates main non-free contrib
 
 # jessie-updates, previously known as 'volatile'
-deb http://httpredir.debian.org/debian/ jessie-updates main
+deb http://httpredir.debian.org/debian/ jessie-updates main non-free contrib
 #deb-src http://mirror.cc.columbia.edu/debian/ jessie-updates main
 
 # Debian Mozilla Team
