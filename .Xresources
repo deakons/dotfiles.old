@@ -1,0 +1,11 @@
+
+! disable the scollbar
+URxvt.scrollBar: 	false
+
+! letter spacing for font display
+URxvt.letterSpace: 	-1
+
+! Basic setup
+URxvt.font:		xft:Monospace:pixelsize=16
+*background: 		#232C31
+*foreground: 		#C5C8C6
