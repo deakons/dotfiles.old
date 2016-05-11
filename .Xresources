@@ -2,10 +2,45 @@
 ! disable the scollbar
 URxvt.scrollBar: 	false
 
+URxvt.colorIT:      #00ff2b
+URxvt.colorBD:      #d7d7d7
+URxvt.colorUL:      #87afd7
+
 ! letter spacing for font display
 URxvt.letterSpace: 	-1
 
+! Transparency
+URxvt*depth: 32
+URxvt*background: rgba:0000/0000/0200/c800
+
 ! Basic setup
-URxvt.font:		xft:Monospace:pixelsize=16
+URxvt.font:		xft:Hack:pixelsize=16:antialias=true:style=Regular
 *background: 		#232C31
 *foreground: 		#C5C8C6
+
+! Color Palette
+!
+! Black
+*color0: #0b1c2c
+*color8: #bf8b56
+! Red
+*color1: #223b54
+*color9: #bfbf56
+! Green
+*color2: #405c79
+*color10: #8bbf56
+! Yellow
+*color3: #627e99
+*color11: #56bf8b
+! Blue
+*color4: #aabcce
+*color12: #568bbf
+! Magenta
+*color5: #cbd6e2
+*color13: #8b56bf
+! Cyan
+*color6: #e5ebf1
+*color14: #bf568b
+! White
+*color7: #f7f9fb
+*color15: #bf5656
