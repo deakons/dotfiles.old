@@ -1,46 +1,35 @@
-
+URxvt*loginShell: true
 ! disable the scollbar
 URxvt.scrollBar: 	false
 
 URxvt.colorIT:      #00ff2b
-URxvt.colorBD:      #d7d7d7
-URxvt.colorUL:      #87afd7
+URxvt.colorBD:      #01a252
+URxvt.colorUL:      #01a0e4
 
 ! letter spacing for font display
 URxvt.letterSpace: 	-1
+URxvt*internalBorder: 4
+URxvt*lineSpace: 2
 
 ! Transparency
 URxvt*depth: 32
-URxvt*background: rgba:0000/0000/0200/c800
+!URxvt*background: rgba:0000/0000/0200/c800
+
+! Extensions
+URxvt.perl-lib: .urxvt/
+URxvt.perl-ext-common: default,tabbedex
+URxvt.tabbed.tabbar-fg: 2
+URxvt.tabbed.tabbar-bg: 0
+URxvt.tabbed.tab-fg: 3
+URxvt.tabbed.tab-bg: 0
+
 
 ! Basic setup
 URxvt.font:		xft:Hack:pixelsize=16:antialias=true:style=Regular
-*background: 		#232C31
-*foreground: 		#C5C8C6
+*background: 		#232c31
+!*foreground: 		#C5C8C6
+!*foreground:		#eeeeee
+*foreground:		#ffffff
 
-! Color Palette
-!
-! Black
-*color0: #0b1c2c
-*color8: #bf8b56
-! Red
-*color1: #223b54
-*color9: #bfbf56
-! Green
-*color2: #405c79
-*color10: #8bbf56
-! Yellow
-*color3: #627e99
-*color11: #56bf8b
-! Blue
-*color4: #aabcce
-*color12: #568bbf
-! Magenta
-*color5: #cbd6e2
-*color13: #8b56bf
-! Cyan
-*color6: #e5ebf1
-*color14: #bf568b
-! White
-*color7: #f7f9fb
-*color15: #bf5656
+!#include "/home/shane/.term/colors/material"
+#include "/home/shane/.term/colors/hybrid"
