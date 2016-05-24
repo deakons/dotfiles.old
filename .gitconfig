@@ -22,9 +22,10 @@
     new = green bold
 
 [color "status"]
-    added = yellow
+    added = red
     changed = green
     untracked = cyan
+    deleted = red
 
 # }}}
 # push/pull/diff/options {{{
