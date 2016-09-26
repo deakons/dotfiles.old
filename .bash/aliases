@@ -1,0 +1,8 @@
+### Bash aliases
+
+alias grep="/bin/grep --color=auto -i -n"
+alias ll="ls -l"
+alias la="ls -a"
+alias ps="ps af"
+alias rsync="rsync -ravz --progress"
+alias valgrind="valgrind -v --leak-check=full"

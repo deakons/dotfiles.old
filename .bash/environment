@@ -1,0 +1,21 @@
+### Environment
+
+export EDITOR=vim
+export GREP_COLOR="1;32"
+export HISTCONTROL=ignoredups
+export HISTSIZE=1000
+export HISTFILESIZE=2000
+export PROMPT_DIRTRIM=2
+
+case $(uname -s) in 
+	Darwin)
+		if [ -x /usr/local/in/ls ]; then
+			alias ls="ls -pFH --color=auto --group-directories-first"
+		else
+			alias ls="ls -hFG"
+		fi
+		;;
+	Linux)
+		alias ls="ls -pFH --color=auto --group-directories-first"
+		;;
+esac
