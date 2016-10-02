@@ -1,0 +1,43 @@
+import sys
+import os
+
+def set_prompt():
+    term_with_colors = ['xterm', 'xterm-color', 'xterm-256color', 'linux',
+                        'screen', 'screen-256color', 'screen-bce']
+    if os.environ.get('TERM') in term_with_colors:
+        escapes_pattern = '\001\033[%sm\002'  # \001 and \002 mark non-printing
+        red = escapes_pattern % '31'
+        green = escapes_pattern % '32'
+        yellow = escapes_pattern % '33'
+        reset = escapes_pattern % '0'
+        sys.ps1 = red + '>' + yellow + '>' + green + '> ' + reset
+        sys.ps2 = green + '... ' + reset
+
+
+def do_import(module, description="", fromlist=[]):
+    try:
+        __import__(module, fromlist=fromlist)
+    except:
+        print "Unable to import " + (",".join(fromlist) + " from " if fromlist else "") + module
+    else:
+        print " => Imported " + (",".join(fromlist) + " from " if fromlist else "") + module
+
+def show_path():
+    print "Path: "
+    for path in sys.path:
+        if path:
+            print " => %s" % path
+
+
+
+print
+print "Modules: "
+do_import("sys", "sys")
+do_import("os", "os")
+print
+show_path()
+set_prompt()
+print
+del set_prompt
+del do_import
+del show_path
